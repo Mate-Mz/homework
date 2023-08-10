@@ -1,0 +1,92 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.wrapper {
+  justify-content: center;
+  height: 600px;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  margin: 50px auto;
+  background-color: #AED8CC;
+  justify-content: space-between;
+  gap: 2px;
+}
+
+.list {
+  overflow-y: scroll;
+  border: 3px solid black;
+  flex: 1;
+  color: white;
+  background-color: AED8CC;
+  padding: 10px;
+}
+
+.list-item {
+  background-color: white;
+  color: black;
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  padding: 20px;
+  border: 2px solid #91C8E4;
+}
+
+.list-item p {
+  flex: 1;  
+}
+
+.trash-icon {
+  color: black;
+}
+
+.check-icon {
+  color: #8EAC50;
+}
+
+.list-item button {
+  cursor: pointer;
+  border-radius: 20px;
+  background-color: white;
+  margin: 3px;
+  padding: 5px
+}
+
+.user-form input {
+  width: 100%;
+  margin-bottom: 2px;
+}
+.user-form button {
+  width: 100%;
+  margin-bottom: 20px;
+  height: 40px;
+  font-size: x-large;
+  font-weight: 700;
+  color: white;
+  background-color: #C70039;
+  border: none;
+  cursor: pointer;
+}
+
+.user-form button:active {
+  color: rgba(255, 255, 255, 0.681);
+  background-color: #c70038c2;
+}
+
+.list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.list::-webkit-scrollbar-track {
+  background-color: none;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background-color: white;
+}
+
+.list::-webkit-scrollbar-thumb:hover {
+  background-color: #f0f0f0;
+}
