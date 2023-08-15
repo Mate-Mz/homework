@@ -6,7 +6,8 @@ class Wrapper extends Component {
     state = {
         inputValue: "",
         tasks: [],
-        completed: [] 
+        completed: [], 
+        addId: 1
     }
 
     onChange = (event) => {
@@ -20,7 +21,7 @@ class Wrapper extends Component {
         event.preventDefault();
         if(this.state.inputValue !== ""){
             const task = {
-                id: this.state.tasks.length +1,
+                id: this.state.tasks.length + this.state.completed.length + this.state.addId,
                 title: this.state.inputValue
             }
     
@@ -45,11 +46,13 @@ class Wrapper extends Component {
         const completed = this.state.completed.filter((task) => task.id !== id);
         this.setState({
             tasks,
-            completed
+            completed,
+            addId: this.state.addId + 1
         });
     }
 
     render() {
+        console.log("render log", this.state);
         return (
             <div className='wrapper'>
 
