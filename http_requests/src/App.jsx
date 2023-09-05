@@ -4,7 +4,7 @@ import UserForm from "./components/UserForm";
 import useFetch from "./hooks/useFetch";
 
 function App() {
-  const {response, error, loading} = useFetch({url: "application/json", method: "GET"})
+  const {response, error, loading} = useFetch({url: "/api/v1/users", method: "GET"})
 
   const userList = response?.items.map(user=>(
     {
