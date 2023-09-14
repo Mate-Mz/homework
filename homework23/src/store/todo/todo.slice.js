@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createTasks, getTasks } from "./todo.thunks";
+import { createTasks, deleteTasks, editTasks, getTasks } from "./todo.thunks";
 
 const initialState = {
   tasks: [],
@@ -12,6 +12,7 @@ const tasksSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
+    //get tasks
     [getTasks.pending.type]: (state) => {
       state.loading = true;
     },
@@ -24,6 +25,8 @@ const tasksSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+
+    //create tasks
     [createTasks.fulfilled.type]: (state) => {
       state.loading = false;
       state.error = null;
@@ -32,6 +35,36 @@ const tasksSlice = createSlice({
       state.loading = true;
     },
     [createTasks.rejected.type]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    //delete tasks
+    [deleteTasks.fulfilled.type]: (state, action) => {
+      state.loading = false;
+      state.error = null;
+      state.tasks = state.tasks.filter(task => task._uuid !== action.payload) 
+    },
+    [deleteTasks.pending.type]: (state) => {
+      state.loading = true;
+    },
+    [deleteTasks.rejected.type]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    //edit tasks
+    [editTasks.fulfilled.type]: (state, { payload: { id, editedData } }) => {
+      state.loading = false;
+      state.error = null;
+      const taskIndex = state.tasks.findIndex(task => task._uuid === id);
+      state.tasks[taskIndex] = { ...state.tasks[taskIndex], ...editedData };
+    },
+    
+    [editTasks.pending.type]: (state) => {
+      state.loading = true;
+    },
+    [editTasks.rejected.type]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },

@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .App {
   text-align: center;
 }
@@ -8,48 +13,48 @@
   color: white;
 }
 
+/*task lists*/
 .App-main {
   padding: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.task-list {
+  width: 50%;
+  text-align: center;
+  border: 3px solid rgb(186, 84, 84);
 }
 
 .task-item {
+  overflow-x: scroll;
   border: 1px solid #ddd;
   padding: 10px;
   margin: 10px 0;
   background-color: #f9f9f9;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
+  scrollbar-width: thin;
+  scrollbar-color: #ddd transparent;
+  &::-webkit-scrollbar {
+    height: 7px;
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #aeaaaa;
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #828282;
+  }
 }
 
 /* Style the task name */
 .task-item h3:first-child {
   font-size: 18px;
   margin-bottom: 5px;
-}
-
-/* Style the username */
-.task-item h3:nth-child(2) {
-  font-size: 14px;
-  color: #777;
-  margin-bottom: 10px;
-}
-
-/* Style the deadline */
-.task-item h3:nth-child(3) {
-  font-size: 14px;
-  color: #ff5733; /* Adjust the color as needed */
-}
-
-.task-item a {
-  color: #445f9d;
-  text-decoration: underline;
-  margin-right: 10px;
-  text-underline-offset: 4px;
-}
-
-.task-item p {
-  font-weight: bold;
-  margin-top: 10px;
 }
 
 .task-item button {
@@ -67,11 +72,10 @@
   background-color: #1d5275;
 }
 
-
 /* ToDoForm */
 
 .todo-form {
-  max-width: 400px;
+  width: 400px;
   margin: 0 auto;
   padding: 20px;
   background-color: #f0f0f0;
@@ -89,29 +93,6 @@
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
-}
-
-.checkbox-label {
-  display: block;
-  margin-top: 10px;
-}
-
-.checkbox-input {
-  margin-left: 10px;
-}
-
-.deadline-section {
-  margin-top: 10px;
-}
-
-.deadline-label {
-  font-weight: bold;
-}
-
-.select-box {
-  width: 70px;
-  padding: 5px;
-  margin-right: 10px;
 }
 
 .submit-button {

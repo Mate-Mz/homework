@@ -1,31 +1,35 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getTasks } from "../store/todo/todo.thunks";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import TaksList from "../components/TaksList";
 
 const MainPage = () => {
   const dispatch = useDispatch();
-  const { tasks, error, loading } = useSelector((state) => state.todo);
+  const { error, loading } = useSelector((state) => state.todo);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getTasks());
   }, [dispatch]);
 
   if (error) return <div>{error}</div>;
-  if (loading) return <div>Loading. . .</div>;
-  console.log(tasks);
+  if (loading)
+    return (
+      <div className="loading-spinner">
+        <div className="spinner"></div>
+      </div>
+    );
   return (
     <div>
+      <header className="App-header">
+        <h1>ToDo App</h1>
+        <button onClick={() => navigate("/create")}>Create Task</button>
+      </header>
       <main className="App-main">
-        <div className="task-list">
-          {tasks.map((task) => (
-            <div className="task-item" key={task._uuid}>
-              <h3>Task: {task.taskName}</h3>
-            </div>
-          ))}
-        </div>
+        <TaksList isCompletedList={false} />
+        <TaksList isCompletedList={true} />
       </main>
-      <Link to={"/create"}>create</Link>
     </div>
   );
 };
